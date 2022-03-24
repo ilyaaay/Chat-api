@@ -1,0 +1,5 @@
+const { WsGateway } = require('../services/ws-gateway');
+
+const wsGateway = new WsGateway();
+
+wsGateway.run();
