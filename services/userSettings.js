@@ -5,7 +5,6 @@ const { DbApi } = require('./db-api');
 const CWD = process.cwd();
 const { UserService } = require('./userService');
 
-// /Рабочий стол/Projects/Chat_API/./resources/avatars
 const PATH = CWD + '/' + './resources/avatars';
 
 class SettingsService {
@@ -16,13 +15,13 @@ class SettingsService {
 		await DbApi.queryPromise(sql);
 
 		const path = await this.joinPath(id);
-			// /Рабочий стол/Projects/Chat_API/./resources/avatars/1
 		fs.mkdirSync(PATH + '/' + id, { recursive: true });
-			// /Рабочий стол/Projects/Chat_API/./resources/avatars/1/avatar.png
+		
 		let buff = body.image.split(',')[1];
+		
 		buff = Buffer.from(buff, 'base64');
 		fs.writeFileSync(path, buff);
-			// fs.writeFileSync(PATH + '/' + id + '/avatar.png.b64', buff);
+		
 		return 'Image was created!';
 	}
 
